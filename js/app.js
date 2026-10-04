@@ -555,8 +555,10 @@
                 </h4>
                 <p class="card__desc">${esc(L(p.desc))}</p>
                 <div class="card__meta">
-                  ${p.tags.map(tg => `<span class="tag">${esc(tg)}</span>`).join("")}
-                  <span class="card__links">${Object.entries(p.links || {}).map(([k, u]) => linkBtn(u, LABELS[k] || k)).join("")}</span>
+                  <div class="card__tags">
+                    ${p.tags.map(tg => `<span class="tag">${esc(tg)}</span>`).join("")}
+                  </div>
+                  ${Object.keys(p.links || {}).length ? `<div class="card__links">${Object.entries(p.links || {}).map(([k, u]) => linkBtn(u, LABELS[k] || k)).join("")}</div>` : ""}
                 </div>
               </div>
             </article>`).join("")}
@@ -573,7 +575,9 @@
             <h4 class="card__title">${esc(L(c.title))}</h4>
             <p class="card__desc" style="color:var(--amber) !important;font-family:var(--font-term);font-size:18px;letter-spacing:.5px">${esc(c.issuer)}</p>
             <div class="card__meta">
-              <span class="tag">${esc(c.tag)}</span>
+              <div class="card__tags">
+                <span class="tag">${esc(c.tag)}</span>
+              </div>
             </div>
           </div>
         </article>`).join("");
@@ -587,9 +591,11 @@
             <h4 class="card__title">${esc(L(a.title))}</h4>
             <p class="card__desc">${esc(L(a.desc))}</p>
             <div class="card__meta">
-              <span class="tag">${esc(a.date)}</span>
-              ${a.tag ? `<span class="tag" style="--c:#ffd76a">${esc(a.tag)}</span>` : ""}
-              ${a.url ? `<span class="card__links">${linkBtn(a.url, "IEEE Xplore ↗", "pbtn--amber")}</span>` : `<span class="tag tag--soon">⏳ ${t("soon")}</span>`}
+              <div class="card__tags">
+                <span class="tag">${esc(a.date)}</span>
+                ${a.tag ? `<span class="tag" style="--c:#ffd76a">${esc(a.tag)}</span>` : ""}
+              </div>
+              ${a.url ? `<div class="card__links">${linkBtn(a.url, "IEEE Xplore ↗", "pbtn--amber")}</div>` : `<span class="tag tag--soon">⏳ ${t("soon")}</span>`}
             </div>
           </div>
         </article>`).join("");
