@@ -525,6 +525,13 @@
             <div class="yt-stat__lbl">${t("subscribers")} · <span class="yt-handle">@${esc(D.owner.handle.toLowerCase())}</span></div>
           </div>
         </div>
+        <div class="sound-presets" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:-4px 0 16px;padding:8px 12px;background:rgba(0,0,0,.35);box-shadow:0 0 0 1px rgba(79,216,255,.2);border-radius:2px">
+          <span style="font-family:var(--font-pixel);font-size:13px;color:var(--amber);margin-right:2px">🎵 Ses Modu:</span>
+          <button type="button" class="chip chip--sound" data-sound="slot" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'slot')}">🎰 Arcade Slot</button>
+          <button type="button" class="chip chip--sound" data-sound="retro" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'retro')}">🪙 8-Bit Chiptune</button>
+          <button type="button" class="chip chip--sound" data-sound="cyber" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'cyber')}">⚡ Sci-Fi Cyber</button>
+          <button type="button" class="chip chip--sound" data-sound="xp" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'xp')}">🔮 Minecraft XP</button>
+        </div>
         <p>${esc(L(y.tagline))}</p>
         <h3>${t("formats")}</h3>
         <div class="formats">${y.formats.map(f => `<div class="format"><span aria-hidden="true">${f.icon}</span>${esc(L(f))}</div>`).join("")}</div>
@@ -654,34 +661,52 @@
     });
     if (id === "studyo") {
       const el = body.querySelector("[data-count]");
-      const raw = el.dataset.count, target = parseInt(raw.replace(/\D/g, ""), 10);
-      if (!target || reduceMotion) return;
+      const raw = el ? el.dataset.count : "12000+", target = parseInt(raw.replace(/\D/g, ""), 10);
       const suffix = raw.replace(/[\d.,\s]/g, "");
       const fmt = n => n.toLocaleString(state.lang === "tr" ? "tr-TR" : "en-US");
-      const t0 = performance.now(), dur = 3300;
-      let lastVal = 0, lastTickT = 0, playedDing = false;
-      const tick = now => {
-        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3.8);
-        const curVal = Math.round(target * e);
-        el.textContent = fmt(curVal) + (k === 1 ? suffix : "");
 
-        if (curVal !== lastVal) {
-          const interval = 35 + (k * 240);
-          if (now - lastTickT >= interval && k < 0.98) {
-            lastTickT = now;
-            if (window.AudioEngine) AudioEngine.counterTick(k);
+      let animId = 0;
+      function startCounterAnimation() {
+        if (!el || reduceMotion) return;
+        cancelAnimationFrame(animId);
+        const t0 = performance.now(), dur = 3300;
+        let lastVal = 0, lastTickT = 0, playedDing = false;
+        const tick = now => {
+          const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3.8);
+          const curVal = Math.round(target * e);
+          el.textContent = fmt(curVal) + (k === 1 ? suffix : "");
+
+          if (curVal !== lastVal) {
+            const interval = 35 + (k * 240);
+            if (now - lastTickT >= interval && k < 0.98) {
+              lastTickT = now;
+              if (window.AudioEngine) AudioEngine.counterTick(k);
+            }
+            lastVal = curVal;
           }
-          lastVal = curVal;
-        }
 
-        if (k < 1) {
-          requestAnimationFrame(tick);
-        } else if (!playedDing) {
-          playedDing = true;
-          if (window.AudioEngine) AudioEngine.counterDing();
-        }
-      };
-      requestAnimationFrame(tick);
+          if (k < 1) {
+            animId = requestAnimationFrame(tick);
+          } else if (!playedDing) {
+            playedDing = true;
+            if (window.AudioEngine) AudioEngine.counterDing();
+          }
+        };
+        animId = requestAnimationFrame(tick);
+      }
+
+      startCounterAnimation();
+
+      body.querySelectorAll(".chip--sound").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const style = btn.dataset.sound;
+          if (window.AudioEngine) {
+            AudioEngine.setCounterStyle(style);
+          }
+          body.querySelectorAll(".chip--sound").forEach(b => b.setAttribute("aria-pressed", b.dataset.sound === style));
+          startCounterAnimation();
+        });
+      });
     }
   }
 
