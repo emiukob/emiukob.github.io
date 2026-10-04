@@ -107,14 +107,17 @@ window.PORTFOLIO = {
       links: { github: "https://github.com/emiukob/Forza_Telemetry_Dashboard" }
     },
     {
-      name: "Hologram Mod",
+      name: "Hologram Projector",
       icon: "🧊",
       image: "assets/curseforgehologramblock.png",
       category: "mod",
       released: true,
       color: "#5ee0c0",
-      desc: { tr: "Minecraft için hologram yazıları ekleyen mod. CurseForge'da yayında.", en: "Minecraft mod that adds hologram text displays. Published on CurseForge." },
-      tags: ["Java", "Minecraft", "Modding"],
+      desc: {
+        tr: "Oyundaki herhangi bir eşya veya bloğun devasa, parıldayan ve dönen 3D hologramlarını yansıtan modern bilim-kurgu Minecraft modu.",
+        en: "A modern sci-fi Minecraft utility mod capable of projecting giant, glowing, 3D rotating holograms of any item or block in the game."
+      },
+      tags: ["Java", "Minecraft", "3D Hologram", "Modding"],
       links: { curseforge: "https://www.curseforge.com/minecraft/mc-mods/hologram-block" }
     },
     {
