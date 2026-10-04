@@ -614,7 +614,7 @@
         ["assets/icons/linkedin.svg", "LinkedIn", l.linkedin, "#0a66c2"],
         ["assets/icons/github.svg", "GitHub", l.github, "#ffffff"],
         ["assets/icons/youtube.svg", "YouTube", l.youtube, "#ff0000"],
-        ["assets/icons/curseforge.svg", "CurseForge", l.curseforge, "#f16436"]
+        ["assets/icons/curseforge.svg?v=2", "CurseForge", l.curseforge, "#f16436"]
       ].filter(c => c[2]);
       return `
         <div class="bio">
