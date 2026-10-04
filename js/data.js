@@ -137,29 +137,9 @@ window.PORTFOLIO = {
       tags: ["Security", "Desktop"], links: {}
     },
     {
-      name: "Pixel Studio", icon: "🎨", category: "tool", color: "#ff7ac6",
-      desc: { tr: "Pixel-art sprite ve görsel üretim aracı.", en: "Pixel-art sprite and asset generation tool." },
-      tags: ["Pixel Art", "Tool"], links: {}
-    },
-    {
       name: "OmniWall", icon: "🖼️", category: "tool", color: "#4fa3ff",
       desc: { tr: "Windows için canlı/hareketli duvar kağıdı uygulaması.", en: "Live / animated wallpaper app for Windows." },
       tags: ["C#", "WPF", "XAML"], links: {}
-    },
-    {
-      name: "Taxi Game", icon: "🚕", category: "game", color: "#ffd23f",
-      desc: { tr: "Yol grafiği ve trafik yapay zekası olan şehir taksi oyunu.", en: "City taxi game with a road graph and traffic AI." },
-      tags: ["JavaScript", "Game AI"], links: {}
-    },
-    {
-      name: "OmniForge2D", icon: "🧱", category: "game", color: "#ff9f43",
-      desc: { tr: "Tarayıcıda çalışan 2D oyun motoru ve tile editörü.", en: "Browser-based 2D game engine and tile editor." },
-      tags: ["JavaScript", "Engine"], links: {}
-    },
-    {
-      name: "Realm of Shadows", icon: "🗡️", category: "game", color: "#a06bff",
-      desc: { tr: "Prosedürel sprite üretimi ve creative menüsü olan aksiyon RPG.", en: "Action RPG with procedural sprites and a creative menu." },
-      tags: ["Python", "Procedural"], links: {}
     },
     {
       name: "AC-130 Gunship Sim",
