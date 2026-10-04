@@ -152,7 +152,7 @@ window.PORTFOLIO = {
       }
     },
     {
-      name: "Match 3D Framework",
+      name: "Match 3D Mobile Game",
       icon: "🧩",
       image: "assets/match3dlogo.png",
       category: "game",
@@ -160,7 +160,7 @@ window.PORTFOLIO = {
       color: "#ff6b8b",
       desc: {
         tr: "Unity 6 ve Blender ile geliştirilen; sıfır GC bellek yönetimi, 3D fizik eşleşmesi ve meta-game (Daily Rewards, Lucky Spin, Store) döngülerine sahip hibrit-casual mobil oyunu.",
-        en: "Production-ready hybrid-casual mobile game framework built in Unity 6 and Blender featuring zero-GC pooling, 3D physics matching, and meta-game retention loops."
+        en: "Production-ready hybrid-casual mobile game built in Unity 6 and Blender featuring zero-GC pooling, 3D physics matching, and meta-game retention loops."
       },
       tags: ["Unity 6", "C#", "Blender", "Mobile", "URP"],
       links: {
