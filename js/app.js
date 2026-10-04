@@ -525,13 +525,6 @@
             <div class="yt-stat__lbl">${t("subscribers")} · <span class="yt-handle">@${esc(D.owner.handle.toLowerCase())}</span></div>
           </div>
         </div>
-        <div class="sound-presets" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:-4px 0 16px;padding:8px 12px;background:rgba(0,0,0,.35);box-shadow:0 0 0 1px rgba(79,216,255,.2);border-radius:2px">
-          <span style="font-family:var(--font-pixel);font-size:13px;color:var(--amber);margin-right:2px">🎵 Ses Modu:</span>
-          <button type="button" class="chip chip--sound" data-sound="slot" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'slot')}">🎰 Arcade Slot</button>
-          <button type="button" class="chip chip--sound" data-sound="retro" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'retro')}">🪙 8-Bit Chiptune</button>
-          <button type="button" class="chip chip--sound" data-sound="cyber" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'cyber')}">⚡ Sci-Fi Cyber</button>
-          <button type="button" class="chip chip--sound" data-sound="xp" style="font-size:12px;padding:4px 8px" aria-pressed="${(window.AudioEngine && AudioEngine.counterStyle === 'xp')}">🔮 Minecraft XP</button>
-        </div>
         <p>${esc(L(y.tagline))}</p>
         <h3>${t("formats")}</h3>
         <div class="formats">${y.formats.map(f => `<div class="format"><span aria-hidden="true">${f.icon}</span>${esc(L(f))}</div>`).join("")}</div>
@@ -696,17 +689,6 @@
       }
 
       startCounterAnimation();
-
-      body.querySelectorAll(".chip--sound").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const style = btn.dataset.sound;
-          if (window.AudioEngine) {
-            AudioEngine.setCounterStyle(style);
-          }
-          body.querySelectorAll(".chip--sound").forEach(b => b.setAttribute("aria-pressed", b.dataset.sound === style));
-          startCounterAnimation();
-        });
-      });
     }
   }
 

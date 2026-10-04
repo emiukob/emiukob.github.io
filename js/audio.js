@@ -282,194 +282,80 @@
     },
 
     /* =========================================================
-       SAYAÇ SES PRESET'LERİ (4 FARKLI TARZ)
+       SAYAÇ SESİ (8-Bit Chiptune & 1-Up Fanfarı)
        ========================================================= */
-    counterStyle: localStorage.getItem("pm_counter_style") || "slot",
 
-    setCounterStyle(style) {
-      if (["slot", "retro", "cyber", "xp"].includes(style)) {
-        this.counterStyle = style;
-        localStorage.setItem("pm_counter_style", style);
-      }
-    },
-
-    /* --- 🎰 1. Sayaç Tıklaması (Mevcut stile göre çalar) --- */
+    /* --- 🪙 1. Sayaç Tıklaması (Kısık & Yumuşak 8-Bit Tıklar) --- */
     counterTick(progress = 0) {
       if (isMuted) return;
       const ac = getContext();
       if (!ac) return;
 
       const now = ac.currentTime;
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      const filter = ac.createBiquadFilter();
 
-      // STİL 1: 🎰 ARCADE SLOT (Mekanik Çark)
-      if (this.counterStyle === "slot") {
-        const osc = ac.createOscillator();
-        const gain = ac.createGain();
-        const filter = ac.createBiquadFilter();
+      // Pentatonik skala basamakları (C5 -> E6)
+      const scale = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50, 1174.66, 1318.51];
+      const noteIdx = Math.min(scale.length - 1, Math.floor(progress * scale.length));
+      const freq = scale[noteIdx];
 
-        const baseFreq = 360 + (progress * 340);
-        osc.type = "triangle";
-        osc.frequency.setValueAtTime(baseFreq, now);
-        osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.5, now + 0.02);
+      osc.type = "square";
+      osc.frequency.setValueAtTime(freq, now);
 
-        filter.type = "lowpass";
-        filter.frequency.setValueAtTime(1600, now);
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(1700, now);
 
-        gain.gain.setValueAtTime(0.045, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+      // Kısık ve kulağı yormayan yumuşak ses seviyesi
+      gain.gain.setValueAtTime(0.013, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.026);
 
-        osc.connect(filter);
-        filter.connect(gain);
-        gain.connect(ac.destination);
-        osc.start(now);
-        osc.stop(now + 0.03);
-      }
-      // STİL 2: 🪙 8-BIT CHIPTUNE (Game Boy / Mario Altın Sayacı)
-      else if (this.counterStyle === "retro") {
-        const osc = ac.createOscillator();
-        const gain = ac.createGain();
-
-        // Pentatonik skala basamakları
-        const scale = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50, 1174.66, 1318.51];
-        const noteIdx = Math.min(scale.length - 1, Math.floor(progress * scale.length));
-        const freq = scale[noteIdx];
-
-        osc.type = "square";
-        osc.frequency.setValueAtTime(freq, now);
-
-        gain.gain.setValueAtTime(0.035, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
-
-        osc.connect(gain);
-        gain.connect(ac.destination);
-        osc.start(now);
-        osc.stop(now + 0.035);
-      }
-      // STİL 3: ⚡ SCI-FI CYBER (Siber Lazer Telemetri)
-      else if (this.counterStyle === "cyber") {
-        const osc = ac.createOscillator();
-        const gain = ac.createGain();
-
-        const startF = 1100 + (progress * 400);
-        osc.type = "sawtooth";
-        osc.frequency.setValueAtTime(startF, now);
-        osc.frequency.exponentialRampToValueAtTime(250, now + 0.025);
-
-        gain.gain.setValueAtTime(0.03, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
-
-        osc.connect(gain);
-        gain.connect(ac.destination);
-        osc.start(now);
-        osc.stop(now + 0.03);
-      }
-      // STİL 4: 🔮 MINECRAFT XP ORBS (Kristal Küre Tınıları)
-      else if (this.counterStyle === "xp") {
-        const osc = ac.createOscillator();
-        const gain = ac.createGain();
-
-        const xpPitch = 600 + Math.sin(progress * Math.PI * 4) * 80 + (progress * 500);
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(xpPitch, now);
-
-        gain.gain.setValueAtTime(0.06, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-
-        osc.connect(gain);
-        gain.connect(ac.destination);
-        osc.start(now);
-        osc.stop(now + 0.045);
-      }
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ac.destination);
+      osc.start(now);
+      osc.stop(now + 0.028);
     },
 
-    /* --- ✨ 2. Sayaç Final Çanı (Mevcut stile göre zafer tınısı) --- */
+    /* --- ✨ 2. Sayaç Final Çanı (Kısık 8-Bit 1-Up Fanfarı) --- */
     counterDing() {
       if (isMuted) return;
       const ac = getContext();
       if (!ac) return;
 
       const now = ac.currentTime;
+      const mario1Up = [
+        { f: 659.25, d: 0.065 }, // E5
+        { f: 783.99, d: 0.065 }, // G5
+        { f: 1318.51, d: 0.065 },// E6
+        { f: 1046.50, d: 0.065 },// C6
+        { f: 1174.66, d: 0.065 },// D6
+        { f: 1567.98, d: 0.24 }  // G6
+      ];
+      let offset = 0;
+      mario1Up.forEach(note => {
+        const osc = ac.createOscillator();
+        const gain = ac.createGain();
+        const filter = ac.createBiquadFilter();
 
-      // STİL 1: 🎰 ARCADE SLOT DING
-      if (this.counterStyle === "slot") {
-        const chord = [659.25, 830.61, 987.77, 1318.51, 1661.22];
-        chord.forEach((freq, i) => {
-          const osc = ac.createOscillator();
-          const gain = ac.createGain();
-          const t = now + i * 0.035;
-          osc.type = i >= 3 ? "sine" : "triangle";
-          osc.frequency.setValueAtTime(freq, t);
-          const dur = i >= 3 ? 0.6 : 0.25;
-          gain.gain.setValueAtTime(0.05, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
-          osc.connect(gain);
-          gain.connect(ac.destination);
-          osc.start(t);
-          osc.stop(t + dur + 0.05);
-        });
-      }
-      // STİL 2: 🪙 8-BIT MARIO 1-UP FANFARE (E5, G5, E6, C6, D6, G6)
-      else if (this.counterStyle === "retro") {
-        const mario1Up = [
-          { f: 659.25, d: 0.08 }, // E5
-          { f: 783.99, d: 0.08 }, // G5
-          { f: 1318.51, d: 0.08 },// E6
-          { f: 1046.50, d: 0.08 },// C6
-          { f: 1174.66, d: 0.08 },// D6
-          { f: 1567.98, d: 0.35 } // G6
-        ];
-        let offset = 0;
-        mario1Up.forEach(note => {
-          const osc = ac.createOscillator();
-          const gain = ac.createGain();
-          const t = now + offset;
-          osc.type = "square";
-          osc.frequency.setValueAtTime(note.f, t);
-          gain.gain.setValueAtTime(0.05, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + note.d);
-          osc.connect(gain);
-          gain.connect(ac.destination);
-          osc.start(t);
-          osc.stop(t + note.d + 0.02);
-          offset += 0.07;
-        });
-      }
-      // STİL 3: ⚡ SCI-FI CYBER ACCESS GRANTED
-      else if (this.counterStyle === "cyber") {
-        // Çift fazlı kilit açılma akoru
-        [440, 880, 1320, 1760].forEach((freq, idx) => {
-          const osc = ac.createOscillator();
-          const gain = ac.createGain();
-          const t = now + idx * 0.025;
-          osc.type = "sawtooth";
-          osc.frequency.setValueAtTime(freq, t);
-          const dur = 0.45;
-          gain.gain.setValueAtTime(0.04, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
-          osc.connect(gain);
-          gain.connect(ac.destination);
-          osc.start(t);
-          osc.stop(t + dur);
-        });
-      }
-      // STİL 4: 🔮 MINECRAFT LEVEL-UP ANVIL CHIME
-      else if (this.counterStyle === "xp") {
-        const xpChime = [1046.50, 1318.51, 1567.98, 2093.00];
-        xpChime.forEach((freq, i) => {
-          const osc = ac.createOscillator();
-          const gain = ac.createGain();
-          const t = now + i * 0.04;
-          osc.type = "sine";
-          osc.frequency.setValueAtTime(freq, t);
-          const dur = 0.8;
-          gain.gain.setValueAtTime(0.07, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
-          osc.connect(gain);
-          gain.connect(ac.destination);
-          osc.start(t);
-          osc.stop(t + dur + 0.05);
-        });
-      }
+        const t = now + offset;
+        osc.type = "square";
+        osc.frequency.setValueAtTime(note.f, t);
+
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(1900, t);
+
+        gain.gain.setValueAtTime(0.016, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + note.d);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ac.destination);
+        osc.start(t);
+        osc.stop(t + note.d + 0.015);
+        offset += 0.06;
+      });
     }
   };
 
