@@ -101,6 +101,7 @@ a { color: var(--cyan); }
   box-shadow: 0 0 0 2px var(--metal-3), 0 3px 0 2px #120e09;
 }
 .ctrl--wide { gap: 8px; }
+.ctrl.is-muted { opacity: 0.65; filter: grayscale(0.8); }
 
 /* =========================================================
    YÜKLEME EKRANI

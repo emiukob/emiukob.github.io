@@ -20,6 +20,7 @@ window.I18N = {
     timeNight: "Gece",
     timeLabel: "Gündüz / gece modu",
     guideBtnLabel: "Rehberi tekrar göster",
+    soundLabel: "Sesi aç / kapat",
     enterBadge: "GİR ↵",
     guide: [
       "Selam! Ben Emir 👋 Adama hoş geldin!",
@@ -72,6 +73,7 @@ window.I18N = {
     timeNight: "Night",
     timeLabel: "Day / night mode",
     guideBtnLabel: "Show guide again",
+    soundLabel: "Toggle sound on / off",
     enterBadge: "ENTER ↵",
     guide: [
       "Hi! I'm Emir 👋 Welcome to my island!",

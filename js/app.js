@@ -308,6 +308,7 @@
   function cycleTime() {
     state.timeMode = TIME_MODES[(TIME_MODES.indexOf(state.timeMode) + 1) % TIME_MODES.length];
     store.set("pm_time", state.timeMode);
+    if (window.AudioEngine) AudioEngine.toggle();
     applyTime();
   }
 
@@ -373,7 +374,12 @@
           state.hero.y += (dyPx / dist) * move / H * 100;
         }
         frameT += dt;
-        if (frameT > 0.13) { frameT = 0; frame = frame === 1 ? 2 : 1; Hero.draw(heroCanvas, frame); }
+        if (frameT > 0.13) {
+          frameT = 0;
+          frame = frame === 1 ? 2 : 1;
+          Hero.draw(heroCanvas, frame);
+          if (window.AudioEngine) AudioEngine.step();
+        }
         placeHero();
         if (i >= points.length) {
           Hero.draw(heroCanvas, 0);
@@ -413,6 +419,7 @@
 
     document.querySelectorAll(".hotspot").forEach(h => h.classList.toggle("is-active", h.dataset.id === id));
     ping(r.door.x, r.door.y);
+    if (window.AudioEngine) AudioEngine.selectTarget();
 
     const targetId = id;
     const pts = routeTo(targetId);
@@ -606,6 +613,7 @@
   function afterRender(id) {
     if (id === "atolye") {
       body.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+        if (window.AudioEngine) AudioEngine.toggle();
         state.filter = c.dataset.filter;
         renderPanel(id);
         body.querySelector(`.chip[data-filter="${state.filter}"]`).focus();
@@ -614,6 +622,11 @@
     if (id === "kamp") {
       const bc = $("#bio-hero"); if (bc) Hero.draw(bc, 0);
     }
+    body.querySelectorAll("a.pbtn, .card__link, a.chip").forEach(a => {
+      a.addEventListener("click", () => {
+        if (window.AudioEngine) AudioEngine.linkClick();
+      });
+    });
     if (id === "studyo") {
       const el = body.querySelector("[data-count]");
       const raw = el.dataset.count, target = parseInt(raw.replace(/\D/g, ""), 10);
@@ -659,6 +672,7 @@
     panel.hidden = false; backdrop.hidden = false;
     body.scrollTop = 0;
     if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+    if (window.AudioEngine) AudioEngine.openModal();
     $("#panel-close").focus();
   }
 
@@ -668,6 +682,7 @@
     panel.hidden = true; backdrop.hidden = true;
     document.querySelectorAll(".hotspot").forEach(h => h.classList.remove("is-active"));
     history.replaceState(null, "", location.pathname + location.search);
+    if (window.AudioEngine) AudioEngine.closeModal();
     if (state.lastFocus && document.contains(state.lastFocus)) state.lastFocus.focus();
   }
 
@@ -707,8 +722,15 @@
   window.addEventListener("hashchange", () => handleHash(false));
 
   /* =========================================================
-     DİL
+     DİL & SES
      ========================================================= */
+  function applySound() {
+    const isMuted = window.AudioEngine ? AudioEngine.isMuted : false;
+    $("#sound-icon").textContent = isMuted ? "🔇" : "🔊";
+    $("#btn-sound").setAttribute("aria-label", t("soundLabel"));
+    $("#btn-sound").classList.toggle("is-muted", isMuted);
+  }
+
   function applyLang() {
     document.documentElement.lang = state.lang;
     document.title = t("pageTitle");
@@ -721,16 +743,28 @@
     buildHotspots();
     buildMobileMenu();
     applyTime();
+    applySound();
     if (state.openId) renderPanel(state.openId);
     if (!$("#guide").hidden) renderGuide();
   }
   $("#btn-lang").addEventListener("click", () => {
     state.lang = state.lang === "tr" ? "en" : "tr";
     store.set("pm_lang", state.lang);
+    if (window.AudioEngine) AudioEngine.toggle();
     applyLang();
   });
+  $("#btn-sound").addEventListener("click", () => {
+    if (window.AudioEngine) {
+      AudioEngine.toggleMute();
+      applySound();
+    }
+  });
   $("#btn-time").addEventListener("click", cycleTime);
-  $("#btn-guide").addEventListener("click", () => { closePanel(); showGuide(); });
+  $("#btn-guide").addEventListener("click", () => {
+    if (window.AudioEngine) AudioEngine.toggle();
+    closePanel();
+    showGuide();
+  });
 
   /* ---------- Saat ---------- */
   function clock() {
