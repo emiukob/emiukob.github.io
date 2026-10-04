@@ -571,7 +571,7 @@
           </div>
           <div>
             <h4 class="card__title">${esc(L(c.title))}</h4>
-            <p class="card__desc" style="color:var(--amber) !important;font-family:var(--font-term);font-size:21px;letter-spacing:.5px">${esc(c.issuer)}</p>
+            <p class="card__desc" style="color:var(--amber) !important;font-family:var(--font-term);font-size:18px;letter-spacing:.5px">${esc(c.issuer)}</p>
             <div class="card__meta">
               <span class="tag">${esc(c.tag)}</span>
             </div>
