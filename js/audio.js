@@ -217,6 +217,68 @@
       gain2.connect(ac.destination);
       osc2.start(now + 0.05);
       osc2.stop(now + 0.16);
+    },
+
+    /* --- 💬 Rehber İleri / Diyalog Geçişi (RPG NPC Dialogue Chirp) --- */
+    guideNext() {
+      if (isMuted) return;
+      const ac = getContext();
+      if (!ac) return;
+
+      const now = ac.currentTime;
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      const filter = ac.createBiquadFilter();
+
+      osc.type = "square";
+      osc.frequency.setValueAtTime(480, now);
+      osc.frequency.exponentialRampToValueAtTime(760, now + 0.04);
+
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(1600, now);
+
+      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ac.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.05);
+    },
+
+    /* --- 🌟 Rehber Tamamlama / Başlangıç Fanfarı (Mini Level Complete) --- */
+    guideDone() {
+      if (isMuted) return;
+      const ac = getContext();
+      if (!ac) return;
+
+      const notes = [587.33, 739.99, 880.00, 1174.66]; // D5, F#5, A5, D6
+      const now = ac.currentTime;
+
+      notes.forEach((freq, idx) => {
+        const osc = ac.createOscillator();
+        const gain = ac.createGain();
+        const filter = ac.createBiquadFilter();
+
+        const t = now + idx * 0.045;
+        osc.type = "square";
+        osc.frequency.setValueAtTime(freq, t);
+
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(2200, t);
+
+        gain.gain.setValueAtTime(0.06, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ac.destination);
+
+        osc.start(t);
+        osc.stop(t + 0.095);
+      });
     }
   };
 

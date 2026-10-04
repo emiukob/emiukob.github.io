@@ -465,10 +465,19 @@
     if (remember) store.set("pm_guide_done", "1");
   }
   $("#guide-next").addEventListener("click", () => {
-    if (guideStep < t("guide").length - 1) { guideStep++; renderGuide(); }
-    else hideGuide(true);
+    if (guideStep < t("guide").length - 1) {
+      guideStep++;
+      if (window.AudioEngine) AudioEngine.guideNext();
+      renderGuide();
+    } else {
+      if (window.AudioEngine) AudioEngine.guideDone();
+      hideGuide(true);
+    }
   });
-  $("#guide-skip").addEventListener("click", () => hideGuide(true));
+  $("#guide-skip").addEventListener("click", () => {
+    if (window.AudioEngine) AudioEngine.closeModal();
+    hideGuide(true);
+  });
 
   /* =========================================================
      PANEL
