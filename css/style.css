@@ -616,8 +616,30 @@ a { color: var(--cyan); }
    MOBİL
    ========================================================= */
 @media (max-width: 768px) {
-  .stage { padding: 6px 4px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-  .frame { width: 100%; min-width: 0; padding: 6px 4px; }
+  html, body {
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+  }
+  .stage {
+    height: 100%;
+    height: 100dvh;
+    min-height: auto;
+    padding: 0 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .frame {
+    width: 100%;
+    max-width: 100%;
+    margin: auto 0;
+    padding: 6px 6px 8px;
+  }
   .frame__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
   .frame__leds { display: flex; gap: 4px; padding-left: 4px; }
   .frame__controls { padding: 0; gap: 6px; }
@@ -632,7 +654,7 @@ a { color: var(--cyan); }
     overflow: hidden;
     width: 100%;
     aspect-ratio: 1 / 1.05;
-    max-height: calc(100dvh - 90px);
+    max-height: calc(100dvh - 65px);
   }
   .screen__status { font-size: 12px; top: 6px; left: 8px; right: 8px; z-index: 10; }
   .mobile-menu { display: none !important; }
@@ -667,12 +689,17 @@ a { color: var(--cyan); }
   /* Panel alttan açılır */
   .panel {
     top: auto; left: 0; right: 0; bottom: 0; width: 100%;
-    max-height: 85vh;
+    max-height: 85dvh;
     border-radius: 12px 12px 0 0;
     animation-name: slideUp;
+    touch-action: pan-y;
+  }
+  .panel__body {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
   @keyframes slideUp { from { transform: translateY(100%); } }
-  .card { grid-template-columns: 70px 1fr; gap: 10px; padding: 10px; }
+  .card { grid-template-columns: 70px minmax(0, 1fr); gap: 10px; padding: 10px; }
   .card__thumb { width: 70px; height: 70px; font-size: 28px; }
   .skill { grid-template-columns: 110px 1fr 36px; font-size: 14px; }
   .formats { grid-template-columns: 1fr; }
