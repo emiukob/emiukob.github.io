@@ -494,8 +494,28 @@
      ========================================================= */
   const panel = $("#panel"), backdrop = $("#panel-backdrop"), body = $("#panel-body");
 
+  const ICONS = {
+    github: `<svg class="pbtn-ico" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>`,
+    youtube: `<svg class="pbtn-ico" viewBox="0 0 24 24" width="16" height="16" fill="#ffffff" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><polygon points="9.5,15.5 16,12 9.5,8.5" fill="#dc2626"/></svg>`,
+    curseforge: `<svg class="pbtn-ico" viewBox="0 0 24 24" width="14" height="14" fill="#ffffff" aria-hidden="true"><path d="M 2.0,5.59 L 2.26,5.85 L 3.03,6.74 L 3.67,7.51 L 3.67,9.56 L 5.21,9.44 L 6.62,9.56 L 7.38,9.69 L 8.03,9.82 L 8.41,9.95 L 8.79,10.08 L 9.31,10.33 L 10.08,11.1 L 10.21,11.49 L 10.21,12.38 L 10.08,12.77 L 9.82,13.03 L 9.69,13.41 L 8.15,14.95 L 7.51,15.33 L 7.13,15.59 L 7.0,15.97 L 6.74,16.49 L 6.62,17.0 L 6.49,17.38 L 6.36,17.77 L 6.23,18.28 L 6.49,18.03 L 7.13,17.51 L 7.51,17.26 L 7.9,17.0 L 8.92,16.49 L 9.18,16.49 L 9.56,16.23 L 10.08,16.1 L 10.46,15.97 L 10.97,15.85 L 11.62,15.72 L 12.64,15.59 L 14.31,15.72 L 13.92,15.85 L 13.54,16.1 L 13.28,16.1 L 12.64,16.49 L 12.38,16.49 L 12.13,16.74 L 11.49,17.0 L 11.1,17.26 L 10.59,17.64 L 9.95,18.15 L 9.82,18.41 L 18.79,18.28 L 18.67,17.9 L 18.54,17.51 L 18.41,17.13 L 18.28,16.62 L 18.15,16.23 L 18.03,15.85 L 17.64,15.46 L 17.0,15.08 L 16.23,14.44 L 15.59,13.79 L 15.21,13.28 L 14.82,12.51 L 14.69,12.0 L 14.69,11.74 L 14.82,11.36 L 14.95,11.1 L 15.21,10.72 L 15.46,10.46 L 15.85,10.21 L 16.23,9.95 L 16.74,9.69 L 17.13,9.56 L 17.64,9.44 L 18.15,9.31 L 18.54,9.31 L 18.92,9.18 L 19.31,9.05 L 19.69,8.92 L 20.97,8.28 L 21.87,7.38 L 22.0,7.13 L 15.72,7.0 L 15.72,5.59 Z"/></svg>`,
+    ieee: `<img class="pbtn-ico-img" src="assets/icons/IEEE.png" width="18" height="14" alt="" aria-hidden="true">`
+  };
+
   function linkBtn(url, label, cls = "") {
     return url ? `<a class="pbtn pbtn--sm ${cls}" href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>` : "";
+  }
+
+  function projectBtn(type, url) {
+    if (!url) return "";
+    const BTN_META = {
+      github: { label: "GitHub", cls: "pbtn--github", icon: ICONS.github },
+      youtube: { label: "Video", cls: "pbtn--youtube", icon: ICONS.youtube },
+      curseforge: { label: "CurseForge", cls: "pbtn--curseforge", icon: ICONS.curseforge },
+      demo: { label: "Demo", cls: "pbtn--demo", icon: "🎮" },
+      ieee: { label: "IEEE Xplore ↗", cls: "pbtn--ieee", icon: ICONS.ieee }
+    };
+    const meta = BTN_META[type] || { label: type, cls: "", icon: "" };
+    return `<a class="pbtn pbtn--sm ${meta.cls}" href="${esc(url)}" target="_blank" rel="noopener">${meta.icon ? `<span class="pbtn__icon">${meta.icon}</span>` : ""}<span class="pbtn__text">${esc(meta.label)}</span></a>`;
   }
 
   const renderers = {
@@ -512,7 +532,7 @@
             <h4 class="card__title" style="font-size:16px;margin:0 0 6px">${esc(L(v.title))}</h4>
             <div class="card__meta">
               <span class="tag" style="--c:#ff5d73">${esc(v.tag || "⚡ Shorts")}</span>
-              <span class="pbtn pbtn--sm pbtn--red" style="margin-left:auto">${t("watch")}</span>
+              <span class="pbtn pbtn--sm pbtn--youtube" style="margin-left:auto"><span class="pbtn__icon">${ICONS.youtube}</span> ${t("watch")}</span>
             </div>
           </div>
         </a>`;
@@ -530,7 +550,7 @@
         <div class="formats">${y.formats.map(f => `<div class="format"><span aria-hidden="true">${f.icon}</span>${esc(L(f))}</div>`).join("")}</div>
         ${videos ? `<h3>${t("latestVideos")}</h3><div class="cards">${videos}</div>` : ""}
         <div class="btn-row" style="margin-top:22px;gap:14px">
-          ${linkBtn(l.youtube, "▶ " + t("visitChannel"), "pbtn--lg pbtn--red")}
+          ${linkBtn(l.youtube, "▶ " + t("visitChannel"), "pbtn--lg pbtn--youtube")}
           ${linkBtn(l.youtube + "?sub_confirmation=1", "🔔 " + t("subscribe"), "pbtn--lg pbtn--white")}
         </div>`;
     },
@@ -538,7 +558,6 @@
     atolye() {
       const cats = ["all", "tool", "game", "mod"];
       const list = D.projects.filter(p => state.filter === "all" || p.category === state.filter);
-      const LABELS = { github: "GitHub", demo: "Demo", curseforge: "CurseForge", youtube: "Video" };
       return `
         <div class="chips" role="group">
           ${cats.map(c => `<button type="button" class="chip" data-filter="${c}" aria-pressed="${state.filter === c}">${t(c)}</button>`).join("")}
@@ -558,7 +577,7 @@
                   <div class="card__tags">
                     ${p.tags.map(tg => `<span class="tag">${esc(tg)}</span>`).join("")}
                   </div>
-                  ${Object.keys(p.links || {}).length ? `<div class="card__links">${Object.entries(p.links || {}).map(([k, u]) => linkBtn(u, LABELS[k] || k)).join("")}</div>` : ""}
+                  ${Object.keys(p.links || {}).length ? `<div class="card__links">${Object.entries(p.links || {}).map(([k, u]) => projectBtn(k, u)).join("")}</div>` : ""}
                 </div>
               </div>
             </article>`).join("")}
@@ -595,7 +614,7 @@
                 <span class="tag">${esc(a.date)}</span>
                 ${a.tag ? `<span class="tag" style="--c:#ffd76a">${esc(a.tag)}</span>` : ""}
               </div>
-              ${a.url ? `<div class="card__links">${linkBtn(a.url, "IEEE Xplore ↗", "pbtn--amber")}</div>` : `<span class="tag tag--soon">⏳ ${t("soon")}</span>`}
+              ${a.url ? `<div class="card__links">${projectBtn("ieee", a.url)}</div>` : `<span class="tag tag--soon">⏳ ${t("soon")}</span>`}
             </div>
           </div>
         </article>`).join("");

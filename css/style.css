@@ -73,11 +73,57 @@ a { color: var(--cyan); }
 }
 .pbtn:hover, .ctrl:hover { filter: brightness(1.15); transform: translateY(-2px); }
 .pbtn:active, .ctrl:active { transform: translateY(2px); box-shadow: 0 0 0 2px #04121c; }
-.pbtn--ghost { background: transparent; color: var(--text); box-shadow: 0 0 0 2px var(--text-dim); }
-.pbtn--amber { background: var(--amber); }
+.pbtn--amber { background: var(--amber); color: #04121c; }
 .pbtn--red { background: var(--red); color: #fff; }
 .pbtn--white { background: #f1f5f9; color: #04121c; }
-.pbtn--sm { padding: 7px 14px; font-size: 15px; letter-spacing: 0.5px; }
+
+/* Marka Temalı Özel Yüksek Kontrastlı Butonlar */
+.pbtn--github {
+  background: #1e293b;
+  color: #ffffff !important;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,.4) inset, 0 0 0 2px #040d1a, 0 3px 0 2px #040d1a;
+}
+.pbtn--github:hover { background: #334155; }
+
+.pbtn--youtube {
+  background: #dc2626;
+  color: #ffffff !important;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,.4) inset, 0 0 0 2px #040d1a, 0 3px 0 2px #040d1a;
+}
+.pbtn--youtube:hover { background: #ef4444; }
+
+.pbtn--curseforge {
+  background: #ea580c;
+  color: #ffffff !important;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,.4) inset, 0 0 0 2px #040d1a, 0 3px 0 2px #040d1a;
+}
+.pbtn--curseforge:hover { background: #f97316; }
+
+.pbtn--ieee {
+  background: #00629b;
+  color: #ffffff !important;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,.4) inset, 0 0 0 2px #040d1a, 0 3px 0 2px #040d1a;
+}
+.pbtn--ieee:hover { background: #0284c7; }
+
+.pbtn--demo {
+  background: #059669;
+  color: #ffffff !important;
+  box-shadow: 0 -2px 0 0 rgba(0,0,0,.4) inset, 0 0 0 2px #040d1a, 0 3px 0 2px #040d1a;
+}
+.pbtn--demo:hover { background: #10b981; }
+
+.pbtn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.pbtn-ico { display: block; }
+.pbtn-ico-img { display: block; object-fit: contain; filter: brightness(0) invert(1); }
+
+.pbtn--sm { padding: 6px 12px; font-size: 14.5px; letter-spacing: 0.5px; gap: 7px; }
 .pbtn--lg {
   padding: 14px 22px;
   font-size: 19px;
