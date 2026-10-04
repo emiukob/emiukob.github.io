@@ -460,6 +460,13 @@ a { color: var(--cyan); }
 }
 .panel__title { margin: 0; font-family: var(--font-pixel); font-size: 30px; letter-spacing: 2px; color: #fff; }
 .panel__sub { margin: 2px 0 0; font-family: var(--font-term); font-size: 21px; color: var(--amber); }
+
+.panel__body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 20px 22px 60px;
+  scrollbar-color: var(--cyan-dim) transparent;
+}
 .panel__body h3 {
   font-family: var(--font-pixel); font-size: 18px; letter-spacing: 1px;
   color: var(--cyan); margin: 24px 0 12px;
@@ -475,6 +482,8 @@ a { color: var(--cyan); }
   padding: 14px;
   background: rgba(255,255,255,.03);
   box-shadow: 0 0 0 2px rgba(79,216,255,.15);
+  border-radius: 4px;
+  box-sizing: border-box;
   transition: transform .2s var(--ease-pop), box-shadow .2s, background .2s;
   animation: cardIn .4s var(--ease-pop) both;
 }
@@ -487,9 +496,11 @@ a { color: var(--cyan); }
   box-shadow: inset 0 -4px 0 rgba(0,0,0,.3), 0 0 0 2px #000;
   border-radius: 4px;
   overflow: hidden;
+  align-self: start;
 }
 .card__thumb img { width: 100%; height: 100%; object-fit: contain; padding: 5px; image-rendering: auto; }
 .card__title { margin: 0 0 5px; font-family: var(--font-pixel); font-size: 17px; line-height: 1.4; color: #fff; word-break: break-word; }
+.card__desc { margin: 0 0 8px !important; font-size: 14.5px !important; color: #cbd5e1 !important; line-height: 1.55 !important; }
 .card__meta {
   display: flex;
   flex-wrap: wrap;
