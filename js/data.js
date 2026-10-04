@@ -98,10 +98,10 @@ window.PORTFOLIO = {
       launchingSoon: true,
       color: "#ffaa00",
       desc: {
-        tr: "Renkli blokları işçilerle numaralı kamyonlara yükleyerek 130+ devasa izometrik 3D voxel heykeli inşa ettiğiniz, 23 sayfalık sanat galerisi ve sıfır GC nesne havuzlama mimarisiyle geliştirilen mobil hibrit-casual bulmaca oyunu.",
-        en: "An isometric hybrid-casual mobile puzzle game where workers sort and load color-coded blocks into numbered trucks to construct 130+ giant 3D voxel sculptures across a 23-page art gallery, built with zero-GC object pooling and responsive grid mechanics."
+        tr: "Renkli blokları işçilerle numaralı kamyonlara yükleyerek 130+ devasa izometrik pixel-art heykeli inşa ettiğiniz, 23 sayfalık sanat galerisi ve sıfır GC nesne havuzlama mimarisiyle geliştirilen mobil hibrit-casual bulmaca oyunu.",
+        en: "An isometric hybrid-casual mobile puzzle game where workers sort and load color-coded blocks into numbered trucks to construct 130+ giant pixel-art sculptures across a 23-page art gallery, built with zero-GC object pooling and responsive grid mechanics."
       },
-      tags: ["Unity 6", "C#", "Voxel", "Puzzle", "Mobile", "Casual"],
+      tags: ["Unity 6", "C#", "Pixel Art", "Puzzle", "Mobile", "Casual"],
       links: {
         github: "https://github.com/emiukob/Build_Hunt"
       }
