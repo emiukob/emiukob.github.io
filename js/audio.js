@@ -156,7 +156,7 @@
       osc.stop(now + 0.1);
     },
 
-    /* --- ☀️ Switch / Buton Tıklama (Mekanik Çıtçıt) --- */
+    /* --- ☀️ Switch / Buton Tıklama (Tok Mekanik Çıtçıt) --- */
     toggle() {
       if (isMuted) return;
       const ac = getContext();
@@ -165,19 +165,25 @@
       const now = ac.currentTime;
       const osc = ac.createOscillator();
       const gain = ac.createGain();
+      const filter = ac.createBiquadFilter();
 
-      osc.type = "square";
-      osc.frequency.setValueAtTime(1200, now);
-      osc.frequency.exponentialRampToValueAtTime(400, now + 0.025);
+      // Tok ve tatlı Game Boy / mekanik buton tınısı
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(160, now + 0.04);
 
-      gain.gain.setValueAtTime(0.05, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(1100, now);
 
-      osc.connect(gain);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+      osc.connect(filter);
+      filter.connect(gain);
       gain.connect(ac.destination);
 
       osc.start(now);
-      osc.stop(now + 0.03);
+      osc.stop(now + 0.045);
     },
 
     /* --- 🪙 Link / Buton Aksiyonu (Retro Coin Pickup) --- */
