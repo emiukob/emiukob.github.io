@@ -128,7 +128,7 @@ window.PORTFOLIO = {
         en: "Zero-config Python & FastAPI tool for bi-directional local Wi-Fi file streaming with 8MB chunking and unlimited file sizes."
       },
       tags: ["Python", "FastAPI", "Streaming", "Zero-Config"],
-      links: { github: "https://github.com/emiukob/LAN_Drop" }
+      links: { github: "https://github.com/emiukob/LAN_Drop-mobile_phone-" }
     },
     {
       name: "GhostShield", icon: "👻", category: "tool", color: "#8a7dff",
