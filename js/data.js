@@ -91,6 +91,22 @@ window.PORTFOLIO = {
   // category: "tool" | "game" | "mod"
   projects: [
     {
+      name: "Build Hunt",
+      icon: "🏗️",
+      image: "assets/buildhunt.png",
+      category: "game",
+      launchingSoon: true,
+      color: "#ffaa00",
+      desc: {
+        tr: "Renkli blokları işçilerle numaralı kamyonlara yükleyerek 130+ devasa izometrik 3D voxel heykeli inşa ettiğiniz, 23 sayfalık sanat galerisi ve sıfır GC nesne havuzlama mimarisiyle geliştirilen mobil hibrit-casual bulmaca oyunu.",
+        en: "An isometric hybrid-casual mobile puzzle game where workers sort and load color-coded blocks into numbered trucks to construct 130+ giant 3D voxel sculptures across a 23-page art gallery, built with zero-GC object pooling and responsive grid mechanics."
+      },
+      tags: ["Unity 6", "C#", "Voxel", "Puzzle", "Mobile", "Casual"],
+      links: {
+        github: "https://github.com/emiukob/Build_Hunt"
+      }
+    },
+    {
       name: "Match 3D Mobile Game",
       icon: "🧩",
       image: "assets/match3dlogo.png",
