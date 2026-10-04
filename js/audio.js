@@ -279,6 +279,67 @@
         osc.start(t);
         osc.stop(t + 0.095);
       });
+    },
+
+    /* --- 🎰 Sayaç Tıklaması (Odometer / Slot Ticks) --- */
+    counterTick(progress = 0) {
+      if (isMuted) return;
+      const ac = getContext();
+      if (!ac) return;
+
+      const now = ac.currentTime;
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      const filter = ac.createBiquadFilter();
+
+      // İlerledikçe hafifçe yükselen tık sesleri (360Hz -> 680Hz)
+      const baseFreq = 360 + (progress * 320);
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(baseFreq, now);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.5, now + 0.02);
+
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(1600, now);
+
+      gain.gain.setValueAtTime(0.045, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(ac.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.03);
+    },
+
+    /* --- ✨ Sayaç Final Çanı (Jackpot Victory Ring) --- */
+    counterDing() {
+      if (isMuted) return;
+      const ac = getContext();
+      if (!ac) return;
+
+      const now = ac.currentTime;
+
+      // Işıltılı zafer çanı (E5, G#5, B5, E6, G#6)
+      const chord = [659.25, 830.61, 987.77, 1318.51, 1661.22];
+      chord.forEach((freq, i) => {
+        const osc = ac.createOscillator();
+        const gain = ac.createGain();
+
+        const t = now + i * 0.035;
+        osc.type = i >= 3 ? "sine" : "triangle";
+        osc.frequency.setValueAtTime(freq, t);
+
+        const dur = i >= 3 ? 0.6 : 0.25;
+        gain.gain.setValueAtTime(0.05, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+
+        osc.connect(gain);
+        gain.connect(ac.destination);
+
+        osc.start(t);
+        osc.stop(t + dur + 0.05);
+      });
     }
   };
 

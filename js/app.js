@@ -659,10 +659,27 @@
       const suffix = raw.replace(/[\d.,\s]/g, "");
       const fmt = n => n.toLocaleString(state.lang === "tr" ? "tr-TR" : "en-US");
       const t0 = performance.now(), dur = 3300;
+      let lastVal = 0, lastTickT = 0, playedDing = false;
       const tick = now => {
         const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3.8);
-        el.textContent = fmt(Math.round(target * e)) + (k === 1 ? suffix : "");
-        if (k < 1) requestAnimationFrame(tick);
+        const curVal = Math.round(target * e);
+        el.textContent = fmt(curVal) + (k === 1 ? suffix : "");
+
+        if (curVal !== lastVal) {
+          const interval = 35 + (k * 240);
+          if (now - lastTickT >= interval && k < 0.98) {
+            lastTickT = now;
+            if (window.AudioEngine) AudioEngine.counterTick(k);
+          }
+          lastVal = curVal;
+        }
+
+        if (k < 1) {
+          requestAnimationFrame(tick);
+        } else if (!playedDing) {
+          playedDing = true;
+          if (window.AudioEngine) AudioEngine.counterDing();
+        }
       };
       requestAnimationFrame(tick);
     }
