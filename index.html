@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emiukob · Haritam</title>
+  <meta name="description" content="Emir (Emiukob) – YouTube içerik üreticisi ve geliştirici. Projeler, makaleler, YouTube kanalı ve iletişim bilgileri tek bir pixel-art ada haritasında.">
+  <meta name="theme-color" content="#0b1424">
+
+  <!-- Open Graph / sosyal paylaşım -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Emiukob · Haritam">
+  <meta property="og:description" content="Pixel-art ada haritasında projelerim, YouTube kanalım ve makalelerim.">
+  <meta property="og:image" content="assets/map.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏝️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&family=VT323&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/map.jpg">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Emir",
+    "alternateName": "Emiukob",
+    "jobTitle": "Developer & Content Creator",
+    "sameAs": [
+      "https://www.youtube.com/@emiukob",
+      "https://github.com/emiukob",
+      "https://www.curseforge.com/members/emiukob/projects",
+      "https://www.linkedin.com/in/emir-bekar-883410360"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- ============ YÜKLEME EKRANI ============ -->
+  <div id="loader" class="loader" role="status" aria-live="polite">
+    <div class="loader__box">
+      <div class="loader__logo">🏝️</div>
+      <div class="loader__title">EMIUKOB<span class="blink">_</span></div>
+      <div class="loader__label"><span data-i18n="loading">Harita yükleniyor</span> <span id="loader-pct">0%</span></div>
+      <div class="loader__bar"><div id="loader-fill" class="loader__fill"></div></div>
+      <div id="loader-tip" class="loader__tip">&nbsp;</div>
+    </div>
+  </div>
+
+  <!-- ============ ANA ÇERÇEVE ============ -->
+  <main class="stage">
+    <div class="frame">
+      <header class="frame__top">
+        <div class="frame__leds" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="frame__controls">
+          <button id="btn-guide" class="ctrl" type="button" aria-label="Rehberi tekrar göster">?</button>
+          <button id="btn-time" class="ctrl ctrl--wide" type="button" aria-label="Gündüz / gece modu"><span id="time-icon">☀️</span><span id="time-text" class="ctrl__text">Otomatik</span></button>
+          <button id="btn-lang" class="ctrl" type="button" aria-label="Switch to English">EN</button>
+        </div>
+      </header>
+
+      <div class="screen">
+        <div class="screen__status" aria-hidden="true">
+          <span>STATUS: <b id="status-text">ÇEVRİMİÇİ</b></span>
+          <span id="status-clock">--:--:--</span>
+        </div>
+
+        <!-- Masaüstü harita -->
+        <div id="map" class="map" role="region" aria-label="Tıklanabilir ada haritası">
+          <img class="map__img" src="assets/map.jpg" alt="Pixel-art ada haritası: sol üstte stüdyo, sağ üstte kütüphane, sol altta atölye, sağ altta kamp ateşi olan ev." width="1376" height="768">
+          <div class="map__fx" id="map-fx" aria-hidden="true"></div>
+          <canvas id="lighting-canvas" class="map__lighting" width="1376" height="768" aria-hidden="true"></canvas>
+          <div class="map__stars" id="map-stars" aria-hidden="true"></div>
+          <div id="hotspots"></div>
+          <div id="hero" class="hero" aria-hidden="true">
+            <canvas id="hero-canvas" width="12" height="16"></canvas>
+            <div class="hero__shadow"></div>
+          </div>
+          <div id="guide" class="guide" role="dialog" aria-live="polite" hidden>
+            <div class="guide__content">
+              <div id="guide-tr" class="guide__tr"></div>
+              <div id="guide-en" class="guide__en"></div>
+            </div>
+            <div class="guide__actions">
+              <button id="guide-skip" type="button" class="pbtn pbtn--ghost">Geç / Skip</button>
+              <button id="guide-next" type="button" class="pbtn">İleri / Next ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobil menü -->
+        <nav id="mobile-menu" class="mobile-menu" aria-label="Bölgeler">
+          <p class="mobile-menu__hello">🏝️ <span data-i18n="mobileHint">Bir bölge seç</span></p>
+          <div id="mobile-list" class="mobile-menu__grid"></div>
+        </nav>
+      </div>
+
+      <div class="frame__bottom" aria-hidden="true">
+        <span class="gauge"><i></i></span>
+        <span class="frame__brand">EMIUKOB · OS</span>
+        <span class="gauge"><i></i></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ BÖLGE PANELİ ============ -->
+  <div id="panel-backdrop" class="panel-backdrop" hidden></div>
+  <aside id="panel" class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" hidden>
+    <header class="panel__head">
+      <span id="panel-icon" class="panel__icon" aria-hidden="true"></span>
+      <div>
+        <h2 id="panel-title" class="panel__title"></h2>
+        <p id="panel-sub" class="panel__sub"></p>
+      </div>
+      <button id="panel-close" class="ctrl panel__close" type="button" aria-label="Kapat">✕</button>
+    </header>
+    <div id="panel-body" class="panel__body"></div>
+  </aside>
+
+  <noscript>
+    <p style="padding:1rem;color:#fff;text-align:center">Bu harita JavaScript ile çalışır. YouTube: <a href="https://www.youtube.com/@emiukob">@emiukob</a></p>
+  </noscript>
+
+  <script src="js/data.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
