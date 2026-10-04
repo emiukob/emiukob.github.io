@@ -147,11 +147,6 @@ window.PORTFOLIO = {
       tags: ["C#", "WPF", "XAML"], links: {}
     },
     {
-      name: "RemoteStream 120Hz", icon: "📡", category: "tool", color: "#36d1dc",
-      desc: { tr: "Düşük gecikmeli, yüksek yenileme hızlı uzak ekran yayını.", en: "Low-latency, high refresh-rate remote screen streaming." },
-      tags: ["Streaming", "Networking"], links: {}
-    },
-    {
       name: "Taxi Game", icon: "🚕", category: "game", color: "#ffd23f",
       desc: { tr: "Yol grafiği ve trafik yapay zekası olan şehir taksi oyunu.", en: "City taxi game with a road graph and traffic AI." },
       tags: ["JavaScript", "Game AI"], links: {}
