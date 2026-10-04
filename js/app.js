@@ -550,8 +550,8 @@
               <div>
                 <h4 class="card__title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                   ${esc(p.name)}
-                  ${p.released ? `<span class="tag tag--released" style="font-size:13px;padding:2px 8px">${t("releasedTag")}</span>` : ""}
-                  ${p.wip ? `<span class="tag tag--wip" style="font-size:13px;padding:2px 8px">${t("wipTag")}</span>` : ""}
+                  ${p.released ? `<span class="tag tag--released" style="font-size:15px;padding:3px 9px">${t("releasedTag")}</span>` : ""}
+                  ${p.wip ? `<span class="tag tag--wip" style="font-size:15px;padding:3px 9px">${t("wipTag")}</span>` : ""}
                 </h4>
                 <p class="card__desc">${esc(L(p.desc))}</p>
                 <div class="card__meta">
@@ -571,7 +571,7 @@
           </div>
           <div>
             <h4 class="card__title">${esc(L(c.title))}</h4>
-            <p class="card__desc" style="color:var(--amber) !important;font-family:var(--font-term);font-size:17px">${esc(c.issuer)}</p>
+            <p class="card__desc" style="color:var(--amber) !important;font-family:var(--font-term);font-size:21px;letter-spacing:.5px">${esc(c.issuer)}</p>
             <div class="card__meta">
               <span class="tag">${esc(c.tag)}</span>
             </div>
