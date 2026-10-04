@@ -440,10 +440,20 @@
   let guideStep = 0;
   function showGuide() {
     if (!isMapVisible()) return;
+    state.walkToken++;
+    state.walkingTo = null;
+    state.hero.x = 50;
+    state.hero.y = 52;
+    state.hero.at = null;
+    Hero.draw(heroCanvas, 0);
+    heroEl.classList.remove("is-flipped");
+    heroEl.classList.add("is-idle");
+    document.querySelectorAll(".hotspot").forEach(h => h.classList.remove("is-active"));
+    placeHero();
+
     guideStep = 0;
     const g = $("#guide");
     g.hidden = false;
-    placeHero();
     renderGuide();
   }
   function renderGuide() {
