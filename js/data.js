@@ -91,46 +91,21 @@ window.PORTFOLIO = {
   // category: "tool" | "game" | "mod"
   projects: [
     {
-      name: "Forza Horizon 6 Mobile Cockpit",
-      icon: "🏎️",
-      image: "assets/horizon6.png",
-      category: "tool",
-      released: true,
-      color: "#ff6a3d",
+      name: "Match 3D Mobile Game",
+      icon: "🧩",
+      image: "assets/match3dlogo.png",
+      category: "game",
+      launchingSoon: true,
+      color: "#ff6b8b",
       desc: {
-        tr: "Telefonu kablosuz 60Hz yarış göstergesine dönüştüren gerçek zamanlı Forza Horizon 6 UDP telemetri paneli.",
-        en: "Real-time 60Hz UDP wireless mobile racing telemetry cockpit for Forza Horizon 6."
+        tr: "Unity 6 ve Blender ile geliştirilen; sıfır GC bellek yönetimi, 3D fizik eşleşmesi ve meta-game (Daily Rewards, Lucky Spin, Store) döngülerine sahip hibrit-casual mobil oyunu.",
+        en: "Production-ready hybrid-casual mobile game built in Unity 6 and Blender featuring zero-GC pooling, 3D physics matching, and meta-game retention loops."
       },
-      tags: ["Node.js", "UDP", "Mobile", "Realtime"],
-      links: { github: "https://github.com/emiukob/Forza_Telemetry_Dashboard" }
-    },
-    {
-      name: "Hologram Projector",
-      icon: "🧊",
-      image: "assets/curseforgehologramblock.png",
-      category: "mod",
-      released: true,
-      color: "#5ee0c0",
-      desc: {
-        tr: "Oyundaki herhangi bir eşya veya bloğun devasa, parıldayan ve dönen 3D hologramlarını yansıtan modern bilim-kurgu Minecraft modu.",
-        en: "A modern sci-fi Minecraft utility mod capable of projecting giant, glowing, 3D rotating holograms of any item or block in the game."
-      },
-      tags: ["Java", "Minecraft", "3D Hologram", "Modding"],
-      links: { curseforge: "https://www.curseforge.com/minecraft/mc-mods/hologram-block" }
-    },
-    {
-      name: "LAN Drop",
-      icon: "⚡",
-      image: "assets/landroplogo.png",
-      category: "tool",
-      released: true,
-      color: "#c0e06a",
-      desc: {
-        tr: "Yerel Wi-Fi ağı üzerinden bilgisayar ve mobil cihazlar arasında 8MB parça akışı ile sınırsız boyutta dosya aktaran sıfır kurulumlu Python & FastAPI aracı.",
-        en: "Zero-config Python & FastAPI tool for bi-directional local Wi-Fi file streaming with 8MB chunking and unlimited file sizes."
-      },
-      tags: ["Python", "FastAPI", "Streaming", "Zero-Config"],
-      links: { github: "https://github.com/emiukob/LAN_Drop-mobile_phone-" }
+      tags: ["Unity 6", "C#", "Blender", "Mobile", "URP"],
+      links: {
+        github: "https://github.com/emiukob/Match3D",
+        youtube: "https://youtube.com/shorts/lpJupVP5a8Y"
+      }
     },
     {
       name: "AC-130 Gunship Sim",
@@ -150,21 +125,46 @@ window.PORTFOLIO = {
       }
     },
     {
-      name: "Match 3D Mobile Game",
-      icon: "🧩",
-      image: "assets/match3dlogo.png",
-      category: "game",
-      wip: true,
-      color: "#ff6b8b",
+      name: "Forza Horizon 6 Mobile Cockpit",
+      icon: "🏎️",
+      image: "assets/horizon6.png",
+      category: "tool",
+      released: true,
+      color: "#ff6a3d",
       desc: {
-        tr: "Unity 6 ve Blender ile geliştirilen; sıfır GC bellek yönetimi, 3D fizik eşleşmesi ve meta-game (Daily Rewards, Lucky Spin, Store) döngülerine sahip hibrit-casual mobil oyunu.",
-        en: "Production-ready hybrid-casual mobile game built in Unity 6 and Blender featuring zero-GC pooling, 3D physics matching, and meta-game retention loops."
+        tr: "Telefonu kablosuz 60Hz yarış göstergesine dönüştüren gerçek zamanlı Forza Horizon 6 UDP telemetri paneli.",
+        en: "Real-time 60Hz UDP wireless mobile racing telemetry cockpit for Forza Horizon 6."
       },
-      tags: ["Unity 6", "C#", "Blender", "Mobile", "URP"],
-      links: {
-        github: "https://github.com/emiukob/Match3D",
-        youtube: "https://youtube.com/shorts/lpJupVP5a8Y"
-      }
+      tags: ["Node.js", "UDP", "Mobile", "Realtime"],
+      links: { github: "https://github.com/emiukob/Forza_Telemetry_Dashboard" }
+    },
+    {
+      name: "LAN Drop",
+      icon: "⚡",
+      image: "assets/landroplogo.png",
+      category: "tool",
+      released: true,
+      color: "#c0e06a",
+      desc: {
+        tr: "Yerel Wi-Fi ağı üzerinden bilgisayar ve mobil cihazlar arasında 8MB parça akışı ile sınırsız boyutta dosya aktaran sıfır kurulumlu Python & FastAPI aracı.",
+        en: "Zero-config Python & FastAPI tool for bi-directional local Wi-Fi file streaming with 8MB chunking and unlimited file sizes."
+      },
+      tags: ["Python", "FastAPI", "Streaming", "Zero-Config"],
+      links: { github: "https://github.com/emiukob/LAN_Drop-mobile_phone-" }
+    },
+    {
+      name: "Hologram Projector",
+      icon: "🧊",
+      image: "assets/curseforgehologramblock.png",
+      category: "mod",
+      released: true,
+      color: "#5ee0c0",
+      desc: {
+        tr: "Oyundaki herhangi bir eşya veya bloğun devasa, parıldayan ve dönen 3D hologramlarını yansıtan modern bilim-kurgu Minecraft modu.",
+        en: "A modern sci-fi Minecraft utility mod capable of projecting giant, glowing, 3D rotating holograms of any item or block in the game."
+      },
+      tags: ["Java", "Minecraft", "3D Hologram", "Modding"],
+      links: { curseforge: "https://www.curseforge.com/minecraft/mc-mods/hologram-block" }
     }
   ],
 

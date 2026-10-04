@@ -567,21 +567,72 @@ a { color: var(--cyan); }
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 50%, transparent);
 }
 .tag--soon { color: var(--amber); --c: var(--amber); }
+
+/* 🚧 Geliştiriliyor: Sağa doğru yavaşça akan sarı/amber uyarı şeritleri */
 .tag--wip {
-  color: #ffaa00;
-  --c: #ffaa00;
-  background: rgba(255,170,0,.14);
-  box-shadow: 0 0 0 1px rgba(255,170,0,.6);
+  color: #ffe066 !important;
+  --c: #ffb800;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 184, 0, 0.28),
+    rgba(255, 184, 0, 0.28) 6px,
+    rgba(255, 184, 0, 0.08) 6px,
+    rgba(255, 184, 0, 0.08) 12px
+  );
+  background-size: 24px 24px;
+  animation: hazardFlow 1.4s linear infinite;
+  box-shadow: 0 0 0 1px rgba(255, 184, 0, 0.7), 0 0 8px rgba(255, 184, 0, 0.25);
   font-weight: 600;
   letter-spacing: .5px;
+  border-radius: 2px;
 }
+@keyframes hazardFlow {
+  from { background-position: 0 0; }
+  to { background-position: 24px 0; }
+}
+
+/* 🔥 Çok Yakında: Parlayan alev / kor nabzı ve sıcak ışıltı */
+.tag--near {
+  color: #ffffff !important;
+  --c: #ff4500;
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.4) 0%, rgba(255, 140, 0, 0.25) 100%);
+  box-shadow: 0 0 0 1px rgba(255, 100, 0, 0.85), 0 0 10px rgba(255, 69, 0, 0.45);
+  font-weight: 700;
+  letter-spacing: .5px;
+  border-radius: 2px;
+  animation: flameEmberPulse 1.8s ease-in-out infinite alternate;
+}
+@keyframes flameEmberPulse {
+  0% {
+    box-shadow: 0 0 0 1px rgba(255, 100, 0, 0.75), 0 0 6px rgba(255, 69, 0, 0.35);
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 0 1.5px rgba(255, 160, 0, 1), 0 0 15px rgba(255, 69, 0, 0.7);
+    filter: brightness(1.2);
+    transform: scale(1.02);
+  }
+}
+
+/* 🟢 Yayınlandı: Canlı radar / nefes alan zümrüt ışığı */
 .tag--released {
-  color: #00ff88;
+  color: #00ff88 !important;
   --c: #00ff88;
-  background: rgba(0,255,136,.12);
-  box-shadow: 0 0 0 1px rgba(0,255,136,.55);
+  background: rgba(0, 255, 136, 0.14);
+  box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.6), 0 0 6px rgba(0, 255, 136, 0.2);
   font-weight: 600;
   letter-spacing: .5px;
+  border-radius: 2px;
+  animation: beaconPulse 2.4s ease-in-out infinite;
+}
+@keyframes beaconPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(0, 255, 136, 0.5), 0 0 4px rgba(0, 255, 136, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 1.5px rgba(0, 255, 136, 0.9), 0 0 12px rgba(0, 255, 136, 0.45);
+  }
 }
 .card__links { display: inline-flex; gap: 8px; align-items: center; flex-shrink: 0; }
 

@@ -556,7 +556,7 @@
     },
 
     atolye() {
-      const cats = ["all", "tool", "game", "mod"];
+      const cats = ["all", "game", "tool", "mod"];
       const list = D.projects.filter(p => state.filter === "all" || p.category === state.filter);
       return `
         <div class="chips" role="group">
@@ -569,8 +569,9 @@
               <div>
                 <h4 class="card__title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                   ${esc(p.name)}
-                  ${p.released ? `<span class="tag tag--released" style="font-size:15px;padding:3px 9px">${t("releasedTag")}</span>` : ""}
+                  ${p.launchingSoon ? `<span class="tag tag--near" style="font-size:15px;padding:3px 9px">${t("launchingSoonTag")}</span>` : ""}
                   ${p.wip ? `<span class="tag tag--wip" style="font-size:15px;padding:3px 9px">${t("wipTag")}</span>` : ""}
+                  ${p.released ? `<span class="tag tag--released" style="font-size:15px;padding:3px 9px">${t("releasedTag")}</span>` : ""}
                 </h4>
                 <p class="card__desc">${esc(L(p.desc))}</p>
                 <div class="card__meta">
