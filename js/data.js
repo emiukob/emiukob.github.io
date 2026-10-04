@@ -8,7 +8,6 @@ window.PORTFOLIO = {
     name: "Emir Bekar",
     handle: "Emiukob",
     email: "emir.bekar@bilgiedu.net",
-    cv: "assets/cv.pdf",
     links: {
       youtube: "https://www.youtube.com/@emiukob",
       github: "https://github.com/emiukob?tab=repositories",

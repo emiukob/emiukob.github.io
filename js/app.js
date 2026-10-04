@@ -631,8 +631,7 @@
                 <span class="contact-arrow" aria-hidden="true">↗</span>
               </a>
             </li>`).join("")}
-        </ul>
-        ${o.cv ? `<div class="btn-row">${linkBtn(o.cv, "📄 " + t("downloadCv"), "pbtn--amber")}</div>` : ""}`;
+        </ul>`;
     }
   };
 
