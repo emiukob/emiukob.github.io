@@ -642,9 +642,9 @@
       if (!target || reduceMotion) return;
       const suffix = raw.replace(/[\d.,\s]/g, "");
       const fmt = n => n.toLocaleString(state.lang === "tr" ? "tr-TR" : "en-US");
-      const t0 = performance.now(), dur = 2200;
+      const t0 = performance.now(), dur = 3300;
       const tick = now => {
-        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3.5);
+        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3.8);
         el.textContent = fmt(Math.round(target * e)) + (k === 1 ? suffix : "");
         if (k < 1) requestAnimationFrame(tick);
       };
