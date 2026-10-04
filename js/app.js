@@ -610,10 +610,11 @@
     kamp() {
       const a = D.about, o = D.owner, l = o.links;
       const contacts = [
-        ["assets/icons/youtube.svg", "YouTube", l.youtube, "#ff0000"],
+        ["assets/icons/email.svg", "E-Mail", o.email ? `mailto:${o.email}` : "", "#ffd76a"],
+        ["assets/icons/linkedin.svg", "LinkedIn", l.linkedin, "#0a66c2"],
         ["assets/icons/github.svg", "GitHub", l.github, "#ffffff"],
-        ["assets/icons/curseforge.svg", "CurseForge", l.curseforge, "#f16436"],
-        ["assets/icons/linkedin.svg", "LinkedIn", l.linkedin, "#0a66c2"]
+        ["assets/icons/youtube.svg", "YouTube", l.youtube, "#ff0000"],
+        ["assets/icons/curseforge.svg", "CurseForge", l.curseforge, "#f16436"]
       ].filter(c => c[2]);
       return `
         <div class="bio">

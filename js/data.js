@@ -5,11 +5,10 @@
    ========================================================= */
 window.PORTFOLIO = {
   owner: {
-    name: "Emir",
+    name: "Emir Bekar",
     handle: "Emiukob",
-    // TODO: kendi bilgilerinle güncelle
-    email: "",                          // ör: "emir@mail.com" – boşsa gösterilmez
-    cv: "",                             // ör: "assets/cv.pdf" – boşsa buton gizlenir
+    email: "emir.bekar@bilgiedu.net",
+    cv: "",                             // boşsa buton gizlenir
     links: {
       youtube: "https://www.youtube.com/@emiukob",
       github: "https://github.com/emiukob?tab=repositories",
@@ -232,8 +231,8 @@ window.PORTFOLIO = {
   /* ---------- 🔥 KAMP ATEŞİ ---------- */
   about: {
     bio: {
-      tr: "Selam, ben Emir! YouTube'da Emiukob adıyla Minecraft içerikleri üretiyorum, boş kalan her anımda da oyun, mod ve masaüstü araçları geliştiriyorum. Fikri üretip çalışan bir ürüne dönüştürmeyi seviyorum.",
-      en: "Hi, I'm Emir! I make Minecraft content on YouTube as Emiukob, and spend the rest of my time building games, mods and desktop tools. I love coming up with ideas and turning them into working products."
+      tr: "Selam, ben Emir Bekar! Bilgisayar Mühendisliği öğrencisi, bağımsız geliştirici ve Emiukob olarak 12.000+ kişilik YouTube topluluğuna içerik üreten bir teknoloji tutkunuyum. IEEE'de yayımlanan Çoklu Ajan Pekiştirmeli Öğrenme (MARL) ve Sürü Robotik araştırmalarımın yanı sıra; Unity 6 ile simülasyon ve mobil oyunlar, Python/Node.js ile ağ ve telemetri araçları, Java ile popüler Minecraft modları geliştiriyorum. Fikirleri saf kod ve tasarımla somut, çalışan ürünlere dönüştürmeyi seviyorum.",
+      en: "Hi, I'm Emir Bekar! Computer Engineering student, indie developer, and tech content creator behind the 12,000+ subscriber YouTube channel Emiukob. Alongside published academic research on Multi-Agent Reinforcement Learning (MARL) and Swarm Robotics in IEEE Xplore; I develop physics simulations and mobile games in Unity 6, high-performance networking & telemetry tools in Python/Node.js, and popular Minecraft mods in Java. I love transforming complex ideas into polished, functional software."
     }
   }
 };
