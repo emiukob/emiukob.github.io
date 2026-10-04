@@ -132,16 +132,6 @@ window.PORTFOLIO = {
       links: { github: "https://github.com/emiukob/LAN_Drop-mobile_phone-" }
     },
     {
-      name: "GhostShield", icon: "👻", category: "tool", color: "#8a7dff",
-      desc: { tr: "Kendi geliştirdiğim koruma/güvenlik aracı.", en: "A protection / security tool I built." },
-      tags: ["Security", "Desktop"], links: {}
-    },
-    {
-      name: "OmniWall", icon: "🖼️", category: "tool", color: "#4fa3ff",
-      desc: { tr: "Windows için canlı/hareketli duvar kağıdı uygulaması.", en: "Live / animated wallpaper app for Windows." },
-      tags: ["C#", "WPF", "XAML"], links: {}
-    },
-    {
       name: "AC-130 Gunship Sim",
       icon: "✈️",
       image: "assets/ac130logo.png?v=2",
