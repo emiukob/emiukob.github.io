@@ -98,8 +98,8 @@ window.PORTFOLIO = {
       launchingSoon: true,
       color: "#ffaa00",
       desc: {
-        tr: "Renkli blokları işçilerle numaralı kamyonlara yükleyerek 130+ devasa pixel-art eseri inşa ettiğiniz, 23 sayfalık sanat galerisi ve sıfır GC nesne havuzlama mimarisiyle geliştirilen mobil hibrit-casual bulmaca oyunu.",
-        en: "A hybrid-casual mobile puzzle game where workers sort and load color-coded blocks into numbered trucks to construct 130+ giant pixel-art sculptures across a 23-page art gallery, built with zero-GC object pooling and responsive grid mechanics."
+        tr: "İşçilerle devasa pixel art yapılarını yıkıp renkli blokları numaralı kamyonlara yüklediğiniz, 130+ eserlik sanat galerisi ve sıfır GC nesne havuzlama mimarisiyle geliştirilen mobil bulmaca oyunu.",
+        en: "A mobile puzzle game where you manage demolition logistics while workers dismantle giant pixel art structures and load colored blocks into matching trucks across 130+ gallery levels."
       },
       tags: ["Unity 6", "C#", "Pixel Art", "Puzzle", "Mobile", "Casual"],
       links: {
