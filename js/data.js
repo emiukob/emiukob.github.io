@@ -115,7 +115,7 @@ window.PORTFOLIO = {
       color: "#5ee0c0",
       desc: { tr: "Minecraft için hologram yazıları ekleyen mod. CurseForge'da yayında.", en: "Minecraft mod that adds hologram text displays. Published on CurseForge." },
       tags: ["Java", "Minecraft", "Modding"],
-      links: { curseforge: "https://www.curseforge.com/minecraft/mc-mods/hologram-mod" }
+      links: { curseforge: "https://www.curseforge.com/minecraft/mc-mods/hologram-block" }
     },
     {
       name: "LAN Drop",
