@@ -119,7 +119,8 @@ window.PORTFOLIO = {
     },
     {
       name: "LAN Drop",
-      icon: "📦",
+      icon: "⚡",
+      image: "assets/landroplogo.png",
       category: "tool",
       released: true,
       color: "#c0e06a",
