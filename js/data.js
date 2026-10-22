@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    PORTFOLYO İÇERİĞİ
    Yeni proje / makale / link eklemek için sadece bu dosyayı düzenle.
    Her metin alanı { tr: "...", en: "..." } şeklindedir.
@@ -227,7 +227,7 @@ window.PORTFOLIO = {
     },
     {
       icon: "🤖",
-      image: "assets/Ekran görüntüsü 2026-10-04 003349.png",
+      image: "assets/ieee_adaptive_formation.png",
       date: "IEEE · 2026",
       title: {
         tr: "Adaptive Formation Control for Collaborative Swarm Robots",
